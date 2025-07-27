@@ -1,0 +1,9 @@
+device_001,UP
+device_002,DOWN
+device_003,up
+device_004,UP
+device_005,DOWN
+device_006,MAINTENANCE
+,UP  # No key
+device_007,  # No Value
+,INVALID line
