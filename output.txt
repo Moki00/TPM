@@ -1,2 +1,3 @@
-integrity_pass.txt is True
-integrity_fail.txt is False
+eu-central
+ap-southeast
+jp-north
