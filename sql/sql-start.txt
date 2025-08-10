@@ -1,0 +1,66 @@
+For a TPM role,
+The goal of the first question is to establish a baseline:
+
+1.  Can you write a basic, clean query?
+2.  Do you understand fundamental concepts like `JOIN`s and aggregations?
+3.  Can you translate a straightforward business request into code?
+
+role-relevant "reporting" query that involves joining two tables and performing a simple aggregation.
+
+**The Scenario:**
+"Imagine we have two tables in our project management database:
+`projects` and `tasks`.
+Write a query to find the number of open tasks for each project."
+
+**The Tables:**
+  * `projects`
+      * `project_id` (integer, primary key)
+      * `project_name` (varchar)
+      * `project_manager_id` (integer)
+      * `due_date` (date)
+
+  * `tasks`
+      * `task_id` (integer, primary key)
+      * `project_id` (integer, foreign key to `projects`)
+      * `assignee_id` (integer)
+      * `status` (varchar: 'Open', 'In Progress', 'Done')
+      * `created_at` (timestamp)
+
+  * **Directly Role-Relevant:** track the status of projects.
+  * **Tests the Holy Trinity:** It efficiently tests the three most fundamental concepts beyond `SELECT`:
+    1.  **`JOIN`**: Can you link related data?
+    2.  **`WHERE`**: Can you filter for the correct data?
+    3.  **`GROUP BY` with an aggregate (`COUNT`)**: Can you summarize data to create a meaningful report?
+
+### How You Should Approach Answering
+Don't jump into coding. Walk the interviewer through your thought process. communication is key for a TPM.
+
+**Step 1: Clarify and Restate (The TPM's first instinct)**
+"Okay, so the goal is to get a list of every project and a count of its tasks,
+but only the ones with a status of 'Open'.
+I'll need to link the `projects` and `tasks` tables and then aggregate the results.
+To make sure I cover all projects,
+even those with zero open tasks,
+I should probably use a `LEFT JOIN`."
+
+the `LEFT JOIN` shows you're thinking about edge cases.
+It immediately signals a higher level of proficiency.
+
+**Step 2: Write the Query (Narrate as you go)**
+"First, I'll select the project name from the `projects` table and the count of task IDs from the `tasks` table."
+"I'll start with the `projects` table and `LEFT JOIN` the `tasks` table `ON` their common column, `project_id`."
+"Then, I'll need a `WHERE` clause to filter for only the tasks where the `status` is 'Open'."
+"Finally, I'll `GROUP BY` the `project_name` to make sure the count is calculated for each project individually."
+
+**The Solution:**
+in project-tasks.sql
+
+### Follow-up Questions
+**The `HAVING` Clause:** "can you modify that to only show projects that have **more than 10** open tasks?"
+      *Answer: "add a `HAVING` clause after the `GROUP BY`, like `HAVING COUNT(t.task_id) > 10`
+**The Additional `JOIN`:** "could you include the full name of the project manager? You can assume there's a `users` table with `user_id` and `full_name`."
+      *Answer: "add another `JOIN` to the `users` table, linking `projects.project_manager_id` to `users.user_id`, and then add `u.full_name` to the `SELECT` statement.
+**The `CASE` Statement:** "can you add a new column called `priority_level` that labels projects with more than 20 open tasks as 'High Priority', between 10 and 20 as 'Medium Priority', and under 10 as 'Low Priority'?"
+      *Answer: "using a `CASE` statement within my `SELECT`, like `CASE WHEN COUNT(t.task_id) > 20 THEN 'High Priority' ELSE ... END AS priority_level`.
+
+not only answer it but also to demonstrate a clear, logical thought process and a readiness for the next layer of complexity.

@@ -1,0 +1,29 @@
+Practice for your SQL interview by tackling these three problems relevant to a Technical Program Manager (TPM) role.
+These problems go from foundational to more advanced and are structured to help you think about how to solve a business problem using a database.
+
+1. Basic Metrics Report
+A fundamental task for a TPM is providing accurate, high-level metrics. You'll need to count things, filter data, and group it by a specific category.
+
+Problem:
+
+You have a table named device_status with two columns: device_id and status (e.g., 'UP', 'DOWN', 'MAINTENANCE'). Your goal is to write a SQL query that counts the total number of devices for each status. The results should be ordered to show the most common status first.
+
+SQL
+
+-- device_status table
+| device_id | status      |
+|-----------|-------------|
+| 101       | UP          |
+| 102       | DOWN        |
+| 103       | UP          |
+| 104       | UP          |
+| 105       | DOWN        |
+Expected Output:
+
+SQL
+
+| status      | device_count |
+|-------------|--------------|
+| UP          | 3            |
+| DOWN        | 2            |
+| MAINTENANCE | 0            |
