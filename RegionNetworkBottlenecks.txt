@@ -1,0 +1,29 @@
+2. Finding Network Bottlenecks
+A common TPM task is to identify issues by analyzing data.
+This problem simulates a scenario where you have network performance data for various regions and
+need to flag regions that are underperforming.
+
+Problem:
+Write a Python function find_bottlenecks(performance_data, threshold)
+that takes a dictionary of network performance data.
+The keys are region names, and the values are network latency in milliseconds.
+The function should return a list of region names that have a latency greater than a given threshold.
+
+Example Performance Data:
+
+performance_data = {
+    'us-east': 25,
+    'us-west': 40,
+    'eu-central': 150,
+    'ap-southeast': 200,
+    'sa-south': 85
+}
+
+threshold = 100
+Expected Output:
+['eu-central', 'ap-southeast']
+
+Hints:
+iterate through the items of the dictionary using a for loop with items()
+Use a conditional statement (if) to check if the latency is above the threshold
+Append the region name to a list if it meets the condition

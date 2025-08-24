@@ -1,0 +1,41 @@
+Data Integrity Check
+As a TPM, ensure the data you're working with is reliable
+This problem focuses on a simple data validation task.
+
+Problem:
+You have a list of dictionaries,
+where each dictionary represents a network device.
+Your task is to check for missing data.
+
+Write a Python function check_data_integrity(devices)
+that takes a list of dictionaries.
+Each dictionary should have the keys 'device_id' and 'status'.
+If a dictionary is missing either of these keys,
+the function should return False.
+If all dictionaries are complete, it should return True.
+
+Example Valid Data:
+devices_valid = [
+    {'device_id': 'd-001', 'status': 'UP'},
+    {'device_id': 'd-002', 'status': 'DOWN'}
+]
+
+Example Invalid Data:
+devices_invalid = [
+    {'device_id': 'd-003', 'status': 'UP'},
+    {'device_id': 'd-004'}, # Missing 'status' key
+    {'status': 'DOWN'}      # Missing 'device_id' key
+]
+
+Expected Outputs:
+check_data_integrity(devices_valid) should return True.
+check_data_integrity(devices_invalid) should return False.
+
+Hints:
+Iterate through the list of dictionaries.
+For each dictionary,
+use the in operator to check if 'device_id' and 'status' are present.
+If you find any dictionary that's missing a key,
+immediately return False.
+If you get through the entire loop without returning False,
+return True at the end.

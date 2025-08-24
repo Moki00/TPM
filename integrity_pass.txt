@@ -1,0 +1,4 @@
+[
+    {'device_id': 'd-001', 'status': 'UP'},
+    {'device_id': 'd-002', 'status': 'DOWN'}
+]
